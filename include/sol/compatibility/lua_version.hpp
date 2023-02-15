@@ -84,6 +84,12 @@
 	#define SOL_USE_MOONJIT_I_ SOL_OFF
 #endif
 
+#if defined(SOL_Z8LUA)
+	#define SOL_USE_Z8LUA_I_ SOL_ON
+#else
+	#define SOL_USE_Z8LUA_I_ SOL_OFF
+#endif
+
 #if !defined(SOL_LUA_VERSION)
 	#if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM >= 502
 		#define SOL_LUA_VERSION LUA_VERSION_NUM

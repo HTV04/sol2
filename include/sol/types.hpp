@@ -667,6 +667,8 @@ namespace sol {
 		jit,
 		// library for handling utf8: new to Lua
 		utf8,
+		// PICO-8 helper functions: z8lua only
+		pico8,
 		// do not use
 		count
 	};

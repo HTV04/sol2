@@ -156,10 +156,12 @@ namespace sol {
 						luaL_requiref(L, "table", luaopen_table, 1);
 						lua_pop(L, 1);
 						break;
+#if SOL_IS_OFF(SOL_USE_Z8LUA)
 					case lib::math:
 						luaL_requiref(L, "math", luaopen_math, 1);
 						lua_pop(L, 1);
 						break;
+#endif // Not supported on z8lua
 					case lib::bit32:
 #if SOL_IS_ON(SOL_USE_LUAJIT)
 						luaL_requiref(L, "bit32", luaopen_bit, 1);
@@ -199,6 +201,12 @@ namespace sol {
 						luaL_requiref(L, "jit", luaopen_jit, 0);
 						lua_pop(L, 1);
 #endif // LuaJIT Only
+						break;
+					case lib::pico8:
+#if SOL_IS_ON(SOL_USE_Z8LUA)
+						luaL_requiref(L, "pico8", luaopen_pico8, 1);
+						lua_pop(L, 1);
+#endif // z8lua only
 						break;
 					case lib::count:
 					default:
@@ -738,6 +746,12 @@ namespace sol {
 
 		operator lua_State*() const {
 			return lua_state();
+		}
+
+		void set_pico8_memory(const unsigned char* memory) {
+#if SOL_IS_ON(SOL_USE_Z8LUA)
+			lua_setpico8memory(lua_state(), memory);
+#endif
 		}
 
 		void set_panic(lua_CFunction panic) {
