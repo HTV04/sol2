@@ -846,6 +846,9 @@ namespace sol {
 		bitwise_and,
 		bitwise_or,
 		bitwise_xor,
+		peek,
+		peek2,
+		peek4,
 		pairs,
 		ipairs,
 		next,
@@ -860,8 +863,8 @@ namespace sol {
 
 	typedef meta_function meta_method;
 
-	inline const std::array<std::string, 37>& meta_function_names() {
-		static const std::array<std::string, 37> names = { { "new",
+	inline const std::array<std::string, 40>& meta_function_names() {
+		static const std::array<std::string, 40> names = { { "new",
 			"__index",
 			"__newindex",
 			"__mode",
@@ -889,6 +892,10 @@ namespace sol {
 			"__band",
 			"__bor",
 			"__bxor",
+
+			"__peek",
+			"__peek2",
+			"__peek4",
 
 			"__pairs",
 			"__ipairs",

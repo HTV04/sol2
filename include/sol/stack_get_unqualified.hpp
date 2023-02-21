@@ -129,7 +129,7 @@ namespace sol { namespace stack {
 			}
 			else if constexpr (std::is_integral_v<T> || std::is_same_v<T, lua_Integer>) {
 				tracking.use(1);
-#if SOL_LUA_VERSION_I_ >= 503
+#if SOL_LUA_VERSION_I_ >= 503 || SOL_IS_ON(SOL_USE_Z8LUA)
 				if (lua_isinteger(L, index) != 0) {
 					return static_cast<T>(lua_tointeger(L, index));
 				}
