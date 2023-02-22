@@ -748,7 +748,11 @@ COMPAT53_API lua_Integer lua_tointegerx(lua_State* L, int i, int* isnum) {
 	int ok = 0;
 	lua_Number n = lua_tonumberx(L, i, &ok);
 	if (ok) {
+#if SOL_IS_ON(SOL_USE_Z8LUA)
+		if (n == lua_Number(lua_Integer(n))) {
+#else
 		if (n == (lua_Integer)n) {
+#endif
 			if (isnum)
 				*isnum = 1;
 			return (lua_Integer)n;
